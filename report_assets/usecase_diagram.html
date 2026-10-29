@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 25px; font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; width: 950px; }
+  .title { text-align: center; font-size: 20px; font-weight: bold; color: #0f2744; margin-bottom: 20px; border-bottom: 2px solid #0f2744; padding-bottom: 8px; }
+  .canvas { display: flex; justify-content: space-between; align-items: stretch; border: 2px solid #cbd5e1; border-radius: 10px; padding: 20px; background: #fdfefe; }
+  .actor-column { width: 140px; display: flex; flex-direction: column; justify-content: space-around; align-items: center; }
+  .actor { text-align: center; padding: 10px; background: #f8fafc; border: 1.5px solid #94a3b8; border-radius: 8px; width: 110px; }
+  .actor-icon { font-size: 32px; margin-bottom: 4px; }
+  .actor-name { font-size: 12px; font-weight: bold; color: #1e293b; }
+  
+  .system-box { flex: 1; margin: 0 20px; border: 2px dashed #3b82f6; border-radius: 8px; padding: 15px 25px; background: #ffffff; }
+  .system-title { text-align: center; font-weight: bold; font-size: 14px; color: #1d4ed8; margin-bottom: 15px; letter-spacing: 0.5px; }
+  .use-cases { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .uc { border: 1.5px solid #2563eb; background: #eff6ff; border-radius: 20px; padding: 9px 14px; text-align: center; font-size: 12px; font-weight: 600; color: #1e40af; box-shadow: 0 1px 3px rgba(37,99,235,0.1); }
+  .uc.highlight { border-color: #dc2626; background: #fef2f2; color: #991b1b; }
+  .uc.audio { border-color: #d97706; background: #fffbeb; color: #92400e; }
+  .uc.admin { border-color: #059669; background: #ecfdf5; color: #065f46; }
+</style>
+</head>
+<body>
+  <div class="title">FIGURE 4.2: USE CASE DIAGRAM - RAILWAY FACILITY AND MANAGEMENT</div>
+  
+  <div class="canvas">
+    <!-- Left Actors: Commuters -->
+    <div class="actor-column">
+      <div class="actor">
+        <div class="actor-icon">🧑</div>
+        <div class="actor-name">General Commuter</div>
+      </div>
+      <div class="actor">
+        <div class="actor-icon">♿</div>
+        <div class="actor-name">Divyangjan Passenger</div>
+      </div>
+    </div>
+    
+    <!-- System Boundary -->
+    <div class="system-box">
+      <div class="system-title">🏛️ SYSTEM BOUNDARY: RAILWAY FACILITY & MANAGEMENT PLATFORM</div>
+      <div class="use-cases">
+        <div class="uc">UC-1: Search Station Amenities & Facilities</div>
+        <div class="uc">UC-2: View Interactive SVG Terminal Blueprint</div>
+        <div class="uc">UC-3: Navigate Step-Free Tactile Route Minimap</div>
+        <div class="uc">UC-4: Track Live Suburban & Mainline Train GPS</div>
+        <div class="uc audio">UC-5: Synthesize 4-Note Chime & Audio Announcement</div>
+        <div class="uc audio">UC-6: Select Female / Male Voice Profile (HI/TA/EN)</div>
+        <div class="uc">UC-7: Check Real-Time Platform Crowd Heatmap</div>
+        <div class="uc highlight">UC-8: Trigger Instant Emergency SOS Assistance</div>
+        <div class="uc">UC-9: Report & Search Lost & Found Articles</div>
+        <div class="uc">UC-10: Toggle WCAG AAA High-Contrast Display</div>
+        <div class="uc admin">UC-11: Update Facility Operational Status & Lifts</div>
+        <div class="uc admin">UC-12: Broadcast Station Security Alerts (RPF/Superintendent)</div>
+      </div>
+    </div>
+    
+    <!-- Right Actors: Staff & Admin -->
+    <div class="actor-column">
+      <div class="actor">
+        <div class="actor-icon">👨‍✈️</div>
+        <div class="actor-name">Station Staff / Sahayak</div>
+      </div>
+      <div class="actor">
+        <div class="actor-icon">🛡️</div>
+        <div class="actor-name">RPF & System Admin</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 25px; font-family: 'Consolas', 'Segoe UI', monospace; background: #ffffff; width: 950px; }
+  .title { text-align: center; font-family: 'Segoe UI', sans-serif; font-size: 20px; font-weight: bold; color: #0f2744; margin-bottom: 20px; border-bottom: 2px solid #0f2744; padding-bottom: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .entity { border: 2px solid #0f2744; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.06); font-size: 11px; }
+  .entity-header { background: #0f2744; color: #ffffff; padding: 7px 10px; font-weight: bold; font-size: 13px; text-align: center; font-family: 'Segoe UI', sans-serif; }
+  .entity-header.train { background: #b45309; }
+  .entity-header.alert { background: #b91c1c; }
+  .entity-header.sos { background: #4c1d95; }
+  .entity-body { padding: 8px 10px; }
+  .attr { padding: 3px 0; border-bottom: 1px dashed #e2e8f0; display: flex; justify-content: space-between; }
+  .attr:last-child { border-bottom: none; }
+  .pk { font-weight: bold; color: #dc2626; }
+  .fk { font-weight: bold; color: #2563eb; }
+  .type { color: #64748b; font-size: 10px; }
+  .rel-banner { grid-column: span 3; text-align: center; font-family: 'Segoe UI', sans-serif; font-size: 12px; color: #475569; padding: 6px; background: #f1f5f9; border-radius: 4px; border: 1px solid #cbd5e1; }
+</style>
+</head>
+<body>
+  <div class="title">FIGURE 4.3: ENTITY RELATIONSHIP (ER) & DATA SCHEMA DIAGRAM</div>
+  
+  <div class="grid">
+    <!-- User Entity -->
+    <div class="entity">
+      <div class="entity-header">USER (Passenger / Staff)</div>
+      <div class="entity-body">
+        <div class="attr"><span class="pk">PK _id</span> <span class="type">ObjectId</span></div>
+        <div class="attr"><span>name</span> <span class="type">String</span></div>
+        <div class="attr"><span>email</span> <span class="type">String (Unique)</span></div>
+        <div class="attr"><span>passwordHash</span> <span class="type">String (Bcrypt)</span></div>
+        <div class="attr"><span>phone</span> <span class="type">String</span></div>
+        <div class="attr"><span>role</span> <span class="type">Enum [passenger, staff, admin]</span></div>
+        <div class="attr"><span>isDivyangjan</span> <span class="type">Boolean</span></div>
+        <div class="attr"><span>preferredLang</span> <span class="type">Enum [hi, ta, en]</span></div>
+        <div class="attr"><span>createdAt</span> <span class="type">Date</span></div>
+      </div>
+    </div>
+    
+    <!-- Facility Entity -->
+    <div class="entity">
+      <div class="entity-header">FACILITY (Station Amenity)</div>
+      <div class="entity-body">
+        <div class="attr"><span class="pk">PK _id</span> <span class="type">ObjectId</span></div>
+        <div class="attr"><span>facilityCode</span> <span class="type">String ("RESTROOM-1")</span></div>
+        <div class="attr"><span>name</span> <span class="type">String</span></div>
+        <div class="attr"><span>category</span> <span class="type">Enum [Restroom, Medical, Buggy, Lift]</span></div>
+        <div class="attr"><span>platformNo</span> <span class="type">Number (1..17)</span></div>
+        <div class="attr"><span>coordinates</span> <span class="type">Object {x, y, floor}</span></div>
+        <div class="attr"><span>isWheelchairAccessible</span> <span class="type">Boolean</span></div>
+        <div class="attr"><span>crowdDensity</span> <span class="type">Enum [Low, Moderate, High]</span></div>
+        <div class="attr"><span>status</span> <span class="type">Enum [Operational, Closed]</span></div>
+      </div>
+    </div>
+    
+    <!-- Train Entity -->
+    <div class="entity">
+      <div class="entity-header train">TRAIN (Mainline & Suburban)</div>
+      <div class="entity-body">
+        <div class="attr"><span class="pk">PK _id</span> <span class="type">ObjectId</span></div>
+        <div class="attr"><span>trainNumber</span> <span class="type">String ("12804")</span></div>
+        <div class="attr"><span>trainName</span> <span class="type">String ("Swarna Jayanti")</span></div>
+        <div class="attr"><span>originStation</span> <span class="type">String ("NZM")</span></div>
+        <div class="attr"><span>destinationStation</span> <span class="type">String ("VSKP")</span></div>
+        <div class="attr"><span>platformAssigned</span> <span class="type">Number (3)</span></div>
+        <div class="attr"><span>scheduledDeparture</span> <span class="type">Date / Time</span></div>
+        <div class="attr"><span>currentSpeed</span> <span class="type">Number (km/h)</span></div>
+        <div class="attr"><span>liveTelemetry</span> <span class="type">Object {corridor, lat, lng}</span></div>
+        <div class="attr"><span>status</span> <span class="type">Enum [On Time, Delayed]</span></div>
+      </div>
+    </div>
+    
+    <!-- Relationship summary -->
+    <div class="rel-banner">
+      🔗 Relationships: User 1:N Dispatches EmergencyAlert • Facility 1:N Associated With Platform • Train 1:N Broadcasts PA Announcements • Alert 1:N Consumed By Clients
+    </div>
+    
+    <!-- Emergency SOS Alert Entity -->
+    <div class="entity">
+      <div class="entity-header sos">EMERGENCY SOS ALERT</div>
+      <div class="entity-body">
+        <div class="attr"><span class="pk">PK _id</span> <span class="type">ObjectId</span></div>
+        <div class="attr"><span class="fk">FK reportedBy</span> <span class="type">ObjectId (Ref: User)</span></div>
+        <div class="attr"><span>emergencyType</span> <span class="type">Enum [Medical, Security, Buggy]</span></div>
+        <div class="attr"><span>platformNo</span> <span class="type">Number</span></div>
+        <div class="attr"><span>locationDesc</span> <span class="type">String</span></div>
+        <div class="attr"><span>resolvedStatus</span> <span class="type">Enum [Pending, Dispatched, Resolved]</span></div>
+        <div class="attr"><span>dispatchedUnit</span> <span class="type">String ("RPF Patrol / Sahayak")</span></div>
+        <div class="attr"><span>timestamp</span> <span class="type">Date</span></div>
+      </div>
+    </div>
+    
+    <!-- Station Alert Entity -->
+    <div class="entity">
+      <div class="entity-header alert">STATION BROADCAST ALERT</div>
+      <div class="entity-body">
+        <div class="attr"><span class="pk">PK _id</span> <span class="type">ObjectId</span></div>
+        <div class="attr"><span>title</span> <span class="type">String</span></div>
+        <div class="attr"><span>message</span> <span class="type">String</span></div>
+        <div class="attr"><span>severity</span> <span class="type">Enum [Info, Warning, Critical]</span></div>
+        <div class="attr"><span>applicablePlatform</span> <span class="type">Number / "ALL"</span></div>
+        <div class="attr"><span>isActive</span> <span class="type">Boolean</span></div>
+        <div class="attr"><span>expireAt</span> <span class="type">Date</span></div>
+      </div>
+    </div>
+    
+    <!-- PA Voice Announcement Entity -->
+    <div class="entity">
+      <div class="entity-header">PA ANNOUNCEMENT LOG</div>
+      <div class="entity-body">
+        <div class="attr"><span class="pk">PK _id</span> <span class="type">ObjectId</span></div>
+        <div class="attr"><span class="fk">FK trainId</span> <span class="type">ObjectId (Ref: Train)</span></div>
+        <div class="attr"><span>chimeChords</span> <span class="type">Array ["D5","F#5","A5","D6"]</span></div>
+        <div class="attr"><span>hindiScript</span> <span class="type">String ("यात्री कृपया ध्यान दें...")</span></div>
+        <div class="attr"><span>tamilScript</span> <span class="type">String ("பயணிகள் கவனிக்கவும்...")</span></div>
+        <div class="attr"><span>englishScript</span> <span class="type">String ("May I have your attention...")</span></div>
+        <div class="attr"><span>voiceGender</span> <span class="type">Enum [Female, Male]</span></div>
+        <div class="attr"><span>broadcastTime</span> <span class="type">Date</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

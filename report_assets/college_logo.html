@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 10px; background: #ffffff; display: flex; justify-content: center; align-items: center; }
+</style>
+</head>
+<body>
+<svg width="220" height="220" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f2744;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Outer double ring -->
+  <circle cx="100" cy="100" r="92" fill="#ffffff" stroke="#0f2744" stroke-width="4"/>
+  <circle cx="100" cy="100" r="84" fill="#ffffff" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="4,3"/>
+  <circle cx="100" cy="100" r="66" fill="#f8fafc" stroke="#0f2744" stroke-width="2"/>
+  
+  <!-- College text curved/styled -->
+  <path id="curveTop" d="M 28 100 A 72 72 0 0 1 172 100" fill="none" stroke="none" />
+  <text font-family="'Times New Roman', serif" font-size="11.5" font-weight="bold" fill="#0f2744">
+    <textPath href="#curveTop" startOffset="50%" text-anchor="middle">
+      EASWARI ENGINEERING COLLEGE
+    </textPath>
+  </text>
+  
+  <path id="curveBottom" d="M 170 105 A 72 72 0 0 1 30 105" fill="none" stroke="none" />
+  <text font-family="'Times New Roman', serif" font-size="10" font-weight="bold" fill="#1e3a8a">
+    <textPath href="#curveBottom" startOffset="50%" text-anchor="middle">
+      AUTONOMOUS • CHENNAI
+    </textPath>
+  </text>
+  
+  <!-- Center Shield -->
+  <path d="M 70 65 L 130 65 L 130 105 Q 130 135 100 148 Q 70 135 70 105 Z" fill="#0f2744" stroke="#f59e0b" stroke-width="2.5"/>
+  
+  <!-- Temple Gopuram / Lamp of Knowledge -->
+  <path d="M 90 120 L 110 120 L 100 95 Z" fill="#f59e0b" />
+  <path d="M 93 95 L 107 95 L 100 78 Z" fill="#fcd34d" />
+  <circle cx="100" cy="74" r="3.5" fill="#ef4444" />
+  
+  <!-- Gear / Wheel of Technology -->
+  <circle cx="100" cy="105" r="16" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="4,2"/>
+  <circle cx="100" cy="105" r="7" fill="#ffffff" />
+  <circle cx="100" cy="105" r="3" fill="#0f2744" />
+  
+  <text x="100" y="166" font-family="'Times New Roman', serif" font-size="8" font-weight="bold" fill="#475569" text-anchor="middle">ESTD 1996</text>
+</svg>
+</body>
+</html>

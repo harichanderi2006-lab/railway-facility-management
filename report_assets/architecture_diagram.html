@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 25px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #ffffff; width: 950px; }
+  .title { text-align: center; font-size: 20px; font-weight: bold; color: #0f2744; margin-bottom: 25px; border-bottom: 2px solid #0f2744; padding-bottom: 8px; }
+  .tier-container { display: flex; flex-direction: column; gap: 18px; }
+  .tier { border-radius: 8px; padding: 15px 20px; border: 2px solid; position: relative; }
+  .tier-header { font-size: 16px; font-weight: bold; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .badge { padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+  .components { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .card { background: #ffffff; border-radius: 6px; padding: 10px 12px; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 2px 4px rgba(0,0,0,0.04); font-size: 12px; }
+  .card-title { font-weight: bold; margin-bottom: 4px; color: #1e293b; font-size: 13px; }
+  .card-desc { color: #64748b; font-size: 11px; line-height: 1.3; }
+  
+  /* Tier 1: Client */
+  .t1 { background: #f0f7ff; border-color: #3b82f6; }
+  .t1 .tier-header { color: #1d4ed8; }
+  .t1 .badge { background: #dbeafe; color: #1e40af; }
+  
+  /* Tier 2: Presentation */
+  .t2 { background: #f5f3ff; border-color: #8b5cf6; }
+  .t2 .tier-header { color: #6d28d9; }
+  .t2 .badge { background: #ede9fe; color: #5b21b6; }
+  
+  /* Tier 3: Application & Logic */
+  .t3 { background: #ecfdf5; border-color: #10b981; }
+  .t3 .tier-header { color: #047857; }
+  .t3 .badge { background: #d1fae5; color: #065f46; }
+  
+  /* Tier 4: Database & Storage */
+  .t4 { background: #fffbeb; border-color: #f59e0b; }
+  .t4 .tier-header { color: #b45309; }
+  .t4 .badge { background: #fef3c7; color: #92400e; }
+  
+  .flow-arrow { text-align: center; color: #64748b; font-size: 18px; font-weight: bold; margin: -8px 0; }
+</style>
+</head>
+<body>
+  <div class="title">FIGURE 4.1: SYSTEM ARCHITECTURE - RAILWAY FACILITY AND MANAGEMENT</div>
+  
+  <div class="tier-container">
+    <!-- Tier 1: User Personas -->
+    <div class="tier t1">
+      <div class="tier-header">
+        <span>👤 User & Client Presentation Layer</span>
+        <span class="badge">Client Endpoints</span>
+      </div>
+      <div class="components">
+        <div class="card"><div class="card-title">General Passengers</div><div class="card-desc">Interactive terminal navigation & departure schedules</div></div>
+        <div class="card"><div class="card-title">♿ Divyangjan Commuters</div><div class="card-desc">Step-free tactile minimaps & wheelchair buggy booking</div></div>
+        <div class="card"><div class="card-title">🚉 Station Superintendent</div><div class="card-desc">Real-time crowd tracking & facility dispatch logs</div></div>
+        <div class="card"><div class="card-title">👮 Railway Police (RPF)</div><div class="card-desc">Instant 1-tap SOS triage & security alert broadcast</div></div>
+      </div>
+    </div>
+    
+    <div class="flow-arrow">⬇ ⬆ (HTTP/HTTPS REST & WebSocket Bi-Directional Full-Duplex Stream)</div>
+    
+    <!-- Tier 2: Frontend Single Page Application -->
+    <div class="tier t2">
+      <div class="tier-header">
+        <span>⚛️ Frontend Web Architecture (React 18 + Vite)</span>
+        <span class="badge">Presentation Framework</span>
+      </div>
+      <div class="components">
+        <div class="card"><div class="card-title">🗺️ Interactive SVG Map</div><div class="card-desc">17 platforms, concourses, lifts & tactile path overlays</div></div>
+        <div class="card"><div class="card-title">🔔 Web Audio PA Studio</div><div class="card-desc">Synthesized 4-note chime (D5-F#5-A5-D6) & trilingual voice</div></div>
+        <div class="card"><div class="card-title">🚆 Suburban Transit Tracker</div><div class="card-desc">GPS telemetry across 4 arterial corridors (92 km/h)</div></div>
+        <div class="card"><div class="card-title">👁️ WCAG AAA Accessibility</div><div class="card-desc">Yellow-on-black high contrast, large typography, voice guide</div></div>
+      </div>
+    </div>
+    
+    <div class="flow-arrow">⬇ ⬆ (JSON Payload / JWT Bearer Tokens / Socket.io Events)</div>
+    
+    <!-- Tier 3: Application Server & Middleware -->
+    <div class="tier t3">
+      <div class="tier-header">
+        <span>⚙️ Application & Business Logic Tier (Node.js + Express.js)</span>
+        <span class="badge">Backend Services</span>
+      </div>
+      <div class="components">
+        <div class="card"><div class="card-title">🔐 JWT & RBAC Auth</div><div class="card-desc">Bcryptjs password hashing & role-based route guard</div></div>
+        <div class="card"><div class="card-title">📍 Facility Router</div><div class="card-desc">Turn-by-turn route coordinates & crowd status API</div></div>
+        <div class="card"><div class="card-title">📡 Live Socket.io Engine</div><div class="card-desc">Passenger density broadcasts & emergency SOS relay</div></div>
+        <div class="card"><div class="card-title">🚆 Telemetry Scheduler</div><div class="card-desc">Train arrival, delay, speed, and platform assigner</div></div>
+      </div>
+    </div>
+    
+    <div class="flow-arrow">⬇ ⬆ (Mongoose ODM / TCP Connection Pool)</div>
+    
+    <!-- Tier 4: Database Storage Tier -->
+    <div class="tier t4">
+      <div class="tier-header">
+        <span>🍃 Database & Persistence Tier (MongoDB Atlas / Local DB)</span>
+        <span class="badge">Document Store</span>
+      </div>
+      <div class="components">
+        <div class="card"><div class="card-title">Users Collection</div><div class="card-desc">Passenger & staff credentials, profiles, roles</div></div>
+        <div class="card"><div class="card-title">Facilities Collection</div><div class="card-desc">Restrooms, clinics, buggies, elevators, coordinates</div></div>
+        <div class="card"><div class="card-title">Trains Collection</div><div class="card-desc">Train numbers, routes, live delays, platform IDs</div></div>
+        <div class="card"><div class="card-title">Alerts & Logs</div><div class="card-desc">Emergency SOS events, lost & found, audit logs</div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

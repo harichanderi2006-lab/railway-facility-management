@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 25px; font-family: 'Segoe UI', Arial, sans-serif; background: #ffffff; width: 950px; }
+  .title { text-align: center; font-size: 20px; font-weight: bold; color: #0f2744; margin-bottom: 20px; border-bottom: 2px solid #0f2744; padding-bottom: 8px; }
+  .seq-wrap { border: 2px solid #cbd5e1; border-radius: 8px; padding: 20px; background: #fafafa; }
+  .lifelines { display: flex; justify-content: space-between; margin-bottom: 10px; }
+  .lane { width: 155px; text-align: center; }
+  .lane-box { background: #0f2744; color: #ffffff; font-weight: bold; padding: 8px 10px; border-radius: 6px; font-size: 12px; }
+  .lane-box.react { background: #0284c7; }
+  .lane-box.express { background: #059669; }
+  .lane-box.mongo { background: #d97706; }
+  .lane-box.audio { background: #7c3aed; }
+  
+  .timeline { border-left: 2px dashed #94a3b8; width: 0; height: 380px; margin: 0 auto; position: relative; }
+  .msg-container { position: relative; height: 400px; margin-top: 15px; }
+  
+  .msg { position: absolute; height: 26px; display: flex; align-items: center; font-size: 11px; font-weight: 600; }
+  .msg-line { height: 2px; background: #3b82f6; position: absolute; top: 12px; }
+  .msg-line::after { content: "►"; position: absolute; right: -4px; top: -6px; font-size: 10px; color: #3b82f6; }
+  .msg-line.ret { background: #64748b; border-top: 1px dashed #64748b; height: 0; }
+  .msg-line.ret::after { content: "◄"; right: auto; left: -4px; color: #64748b; }
+  .msg-text { background: #ffffff; padding: 1px 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 10.5px; z-index: 2; color: #1e293b; }
+</style>
+</head>
+<body>
+  <div class="title">FIGURE 4.4: SEQUENCE DIAGRAM - AMENITY NAVIGATION & PA BROADCAST</div>
+  
+  <div class="seq-wrap">
+    <div class="lifelines">
+      <div class="lane"><div class="lane-box">👤 Commuter / User</div></div>
+      <div class="lane"><div class="lane-box react">⚛️ React Frontend</div></div>
+      <div class="lane"><div class="lane-box express">⚙️ Express Backend</div></div>
+      <div class="lane"><div class="lane-box mongo">🍃 MongoDB Database</div></div>
+      <div class="lane"><div class="lane-box audio">🔔 Web Audio API / TTS</div></div>
+    </div>
+    
+    <div class="msg-container">
+      <!-- 1. Click Restroom 1 Minimap -->
+      <div class="msg" style="top: 15px; left: 80px; width: 195px;">
+        <div class="msg-line" style="width: 195px;"></div>
+        <div class="msg-text" style="margin-left: 10px;">1. Tap Restroom 1 (Platform 1)</div>
+      </div>
+      
+      <!-- 2. GET API call -->
+      <div class="msg" style="top: 55px; left: 275px; width: 195px;">
+        <div class="msg-line" style="width: 195px;"></div>
+        <div class="msg-text" style="margin-left: 15px;">2. GET /api/facilities/restroom-1</div>
+      </div>
+      
+      <!-- 3. Query DB -->
+      <div class="msg" style="top: 95px; left: 470px; width: 195px;">
+        <div class="msg-line" style="width: 195px;"></div>
+        <div class="msg-text" style="margin-left: 20px;">3. findOne({ code: 'RESTROOM-1' })</div>
+      </div>
+      
+      <!-- 4. Return data -->
+      <div class="msg" style="top: 135px; left: 470px; width: 195px;">
+        <div class="msg-line ret" style="width: 195px;"></div>
+        <div class="msg-text" style="margin-left: 30px;">4. JSON: coordinates & status</div>
+      </div>
+      
+      <!-- 5. Return to frontend -->
+      <div class="msg" style="top: 175px; left: 275px; width: 195px;">
+        <div class="msg-line ret" style="width: 195px;"></div>
+        <div class="msg-text" style="margin-left: 25px;">5. 200 OK: Step-free tactile path</div>
+      </div>
+      
+      <!-- 6. Synthesize chime -->
+      <div class="msg" style="top: 220px; left: 275px; width: 580px;">
+        <div class="msg-line" style="width: 580px; background: #7c3aed;"></div>
+        <div class="msg-text" style="margin-left: 170px;">6. playChime(): 4-Note Melodic Bell (D5-F#5-A5-D6)</div>
+      </div>
+      
+      <!-- 7. Speech announcement -->
+      <div class="msg" style="top: 265px; left: 275px; width: 580px;">
+        <div class="msg-line" style="width: 580px; background: #7c3aed;"></div>
+        <div class="msg-text" style="margin-left: 150px;">7. speak(): Trilingual Voice (यात्री कृपया ध्यान दें... / தமிழ்)</div>
+      </div>
+      
+      <!-- 8. Display animated minimap -->
+      <div class="msg" style="top: 310px; left: 80px; width: 195px;">
+        <div class="msg-line ret" style="width: 195px;"></div>
+        <div class="msg-text" style="margin-left: 5px;">8. Render animated walking minimap & LED ticker</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
